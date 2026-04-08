@@ -1,1618 +1,409 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Michael — Web Developer Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;1,400&display=swap" rel="stylesheet"/>
 
 <style>
-/* ==============================
-   GLOBAL RESET & BASE
-============================== */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --bg: #0a0a0f;
-  --surface: #13131a;
-  --border: rgba(255,255,255,0.08);
-  --accent: #c8f542;
-  --accent2: #7b5ea7;
-  --text: #e8e8f0;
-  --muted: #888899;
-  --white: #ffffff;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
-  line-height: 1.7;
-  overflow-x: hidden;
-}
-
-/* ==============================
-   PORTFOLIO MAIN NAV
-============================== */
-.main-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  padding: 1.2rem 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(10,10,15,0.85);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-}
-
-.nav-logo {
-  font-family: 'Fraunces', serif;
-  font-size: 1.4rem;
-  color: var(--white);
-  letter-spacing: -0.02em;
-}
-
-.nav-logo span { color: var(--accent); }
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-}
-
-.nav-links a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 0.88rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-weight: 500;
-  transition: color 0.25s;
-}
-.nav-links a:hover { color: var(--accent); }
-
-/* ==============================
-   HERO SECTION
-============================== */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 8rem 2.5rem 5rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-grid-bg {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(200,245,66,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200,245,66,0.04) 1px, transparent 1px);
-  background-size: 80px 80px;
-}
-
-.hero-glow {
-  position: absolute;
-  width: 700px; height: 700px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(123,94,167,0.18) 0%, transparent 70%);
-  top: -200px; right: -200px;
-  pointer-events: none;
-}
-
-.hero-glow2 {
-  position: absolute;
-  width: 500px; height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(200,245,66,0.1) 0%, transparent 70%);
-  bottom: -100px; left: -100px;
-  pointer-events: none;
-}
-
-.hero-content {
-  max-width: 1100px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-.hero-badge {
-  display: inline-block;
-  background: rgba(200,245,66,0.12);
-  border: 1px solid rgba(200,245,66,0.3);
-  color: var(--accent);
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.4rem 1rem;
-  border-radius: 100px;
-  margin-bottom: 2rem;
-  font-weight: 500;
-  animation: fadeUp 0.8s ease both;
-}
-
-.hero h1 {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(3rem, 7vw, 6.5rem);
-  font-weight: 700;
-  line-height: 1.0;
-  letter-spacing: -0.03em;
-  color: var(--white);
-  margin-bottom: 1.5rem;
-  animation: fadeUp 0.8s ease 0.1s both;
-}
-
-.hero h1 em {
-  font-style: italic;
-  color: var(--accent);
-  font-weight: 300;
-}
-
-.hero-intro {
-  max-width: 580px;
-  font-size: 1.1rem;
-  color: var(--muted);
-  margin-bottom: 2.5rem;
-  animation: fadeUp 0.8s ease 0.2s both;
-  line-height: 1.8;
-}
-
-.hero-demo-note {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border);
-  padding: 0.7rem 1.2rem;
-  border-radius: 8px;
-  font-size: 0.88rem;
-  color: var(--muted);
-  margin-bottom: 2.5rem;
-  animation: fadeUp 0.8s ease 0.3s both;
-}
-.hero-demo-note::before {
-  content: "ℹ";
-  color: var(--accent);
-  font-style: normal;
-  font-size: 1rem;
-}
-
-.hero-ctas {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  animation: fadeUp 0.8s ease 0.4s both;
-}
-
-.btn-primary {
-  background: var(--accent);
-  color: #0a0a0f;
-  padding: 0.85rem 2rem;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  display: inline-block;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(200,245,66,0.3);
-}
-
-.btn-outline {
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 0.85rem 2rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  display: inline-block;
-  transition: border-color 0.2s, color 0.2s;
-}
-.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-
-/* ==============================
-   SECTION WRAPPER
-============================== */
-.section {
-  padding: 6rem 2.5rem;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.section-label {
-  font-size: 0.78rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.section-title {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 700;
-  color: var(--white);
-  letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
-  line-height: 1.15;
-}
-
-/* ==============================
-   ABOUT ME
-============================== */
-#about {
-  border-top: 1px solid var(--border);
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  align-items: center;
-}
-
-.about-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.stat-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: border-color 0.2s;
-}
-.stat-card:hover { border-color: rgba(200,245,66,0.3); }
-
-.stat-number {
-  font-family: 'Fraunces', serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 0.3rem;
-}
-
-.stat-label { font-size: 0.85rem; color: var(--muted); }
-
-.about-text p {
-  color: var(--muted);
-  margin-bottom: 1rem;
-  font-size: 1rem;
-}
-
-.about-text strong { color: var(--text); font-weight: 500; }
-
-.lang-tags {
-  display: flex;
-  gap: 0.7rem;
-  margin-top: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.lang-tag {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--border);
-  padding: 0.4rem 1rem;
-  border-radius: 100px;
-  font-size: 0.82rem;
-  color: var(--muted);
-}
-
-/* ==============================
-   PROJECT SHOWCASE HEADER
-============================== */
-#projects {
-  border-top: 1px solid var(--border);
-}
-
-.projects-header {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 6rem 2.5rem 3rem;
-}
-
-.demo-disclaimer {
-  background: rgba(200,245,66,0.07);
-  border: 1px solid rgba(200,245,66,0.2);
-  border-radius: 10px;
-  padding: 1rem 1.5rem;
-  font-size: 0.9rem;
-  color: var(--accent);
-  margin-top: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-}
-
-/* ==============================
-   DEMO PROJECT CARD WRAPPER
-============================== */
-.demo-wrapper {
-  width: 100%;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-  margin-bottom: 5rem;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.4);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.demo-wrapper:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 48px 100px rgba(0,0,0,0.5);
-}
-
-.demo-header-bar {
-  background: #1e1e28;
-  padding: 0.8rem 1.2rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.demo-dots { display: flex; gap: 0.4rem; }
-.demo-dots span {
-  width: 12px; height: 12px;
-  border-radius: 50%;
-  display: block;
-}
-.dot-r { background: #ff5f57; }
-.dot-y { background: #ffbd2e; }
-.dot-g { background: #28ca41; }
-
-.demo-url {
-  background: rgba(255,255,255,0.06);
-  border-radius: 4px;
-  padding: 0.3rem 1rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  color: var(--muted);
-  flex: 1;
-  max-width: 300px;
-}
-
-.demo-badge {
-  margin-left: auto;
-  background: rgba(200,245,66,0.12);
-  border: 1px solid rgba(200,245,66,0.25);
-  color: var(--accent);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.2rem 0.7rem;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-/* ==============================
-   DEMO 1: COFFEE SHOP
-============================== */
-.coffee {
-  --c-bg: #1a1208;
-  --c-warm: #d4843e;
-  --c-cream: #f5e6c8;
-  --c-dark: #2c1a0a;
-  --c-text: #e8d5b0;
-  --c-muted: #a08060;
-  font-family: 'Playfair Display', serif;
-}
-
-.coffee-nav {
-  background: var(--c-dark);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.2rem 3rem;
-  border-bottom: 2px solid rgba(212,132,62,0.2);
-}
-
-.coffee-logo {
-  font-size: 1.5rem;
-  color: var(--c-cream);
-  letter-spacing: -0.02em;
-}
-.coffee-logo span { color: var(--c-warm); font-style: italic; }
-
-.coffee-nav-links {
-  display: flex; gap: 2rem; list-style: none;
-}
-.coffee-nav-links a {
-  color: var(--c-muted);
-  text-decoration: none;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  transition: color 0.2s;
-}
-.coffee-nav-links a:hover { color: var(--c-warm); }
-
-.coffee-hero {
-  background: var(--c-bg);
-  background-image:
-    radial-gradient(ellipse at 80% 50%, rgba(212,132,62,0.15) 0%, transparent 60%),
-    radial-gradient(ellipse at 20% 80%, rgba(82,40,10,0.4) 0%, transparent 50%);
-  padding: 5rem 3rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-  min-height: 380px;
-}
-
-.coffee-hero-text h1 {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  color: var(--c-cream);
-  line-height: 1.1;
-  margin-bottom: 1rem;
-}
-.coffee-hero-text h1 em { color: var(--c-warm); }
-.coffee-hero-text p {
-  font-family: 'DM Sans', sans-serif;
-  color: var(--c-muted);
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.coffee-btn {
-  background: var(--c-warm);
-  color: #1a0a02;
-  padding: 0.8rem 1.8rem;
-  border-radius: 4px;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 600;
-  font-size: 0.9rem;
-  display: inline-block;
-  text-decoration: none;
-  transition: opacity 0.2s;
-}
-.coffee-btn:hover { opacity: 0.85; }
-
-.coffee-hero-visual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.coffee-cup-icon {
-  font-size: 8rem;
-  filter: drop-shadow(0 16px 40px rgba(212,132,62,0.3));
-}
-
-.coffee-menu {
-  background: var(--c-dark);
-  padding: 4rem 3rem;
-}
-
-.coffee-menu h2 {
-  font-size: 2rem;
-  color: var(--c-cream);
-  text-align: center;
-  margin-bottom: 2.5rem;
-}
-.coffee-menu h2 span { color: var(--c-warm); font-style: italic; }
-
-.coffee-menu-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.coffee-item {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(212,132,62,0.15);
-  border-radius: 10px;
-  padding: 1.5rem;
-  text-align: center;
-  transition: border-color 0.2s, transform 0.2s;
-}
-.coffee-item:hover { border-color: rgba(212,132,62,0.5); transform: translateY(-3px); }
-
-.coffee-item-icon { font-size: 2.5rem; margin-bottom: 0.7rem; }
-.coffee-item h3 { color: var(--c-cream); font-size: 1.1rem; margin-bottom: 0.3rem; }
-.coffee-item p { font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: var(--c-muted); }
-.coffee-item .price { color: var(--c-warm); font-weight: 700; font-size: 1.1rem; margin-top: 0.5rem; font-family: 'DM Sans', sans-serif; }
-
-.coffee-contact {
-  background: var(--c-bg);
-  padding: 3rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  border-top: 1px solid rgba(212,132,62,0.15);
-}
-
-.coffee-contact-info h3 {
-  color: var(--c-cream);
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
-}
-
-.coffee-contact-info p {
-  font-family: 'DM Sans', sans-serif;
-  color: var(--c-muted);
-  font-size: 0.9rem;
-}
-
-.coffee-hours {
-  font-family: 'DM Sans', sans-serif;
-  color: var(--c-muted);
-  font-size: 0.85rem;
-  line-height: 1.8;
-}
-.coffee-hours strong { color: var(--c-warm); display: block; margin-bottom: 0.3rem; }
-
-/* ==============================
-   DEMO 2: TECH / CORPORATE
-============================== */
-.tech {
-  font-family: 'DM Sans', sans-serif;
-  --t-bg: #f8f9fc;
-  --t-surface: #ffffff;
-  --t-blue: #1a56db;
-  --t-indigo: #4338ca;
-  --t-text: #111827;
-  --t-muted: #6b7280;
-  --t-border: #e5e7eb;
-}
-
-.tech-nav {
-  background: var(--t-surface);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 3rem;
-  border-bottom: 1px solid var(--t-border);
-}
-
-.tech-logo {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--t-text);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.tech-logo-mark {
-  width: 28px; height: 28px;
-  background: linear-gradient(135deg, var(--t-blue), var(--t-indigo));
-  border-radius: 6px;
-  display: inline-block;
-}
-
-.tech-nav-links {
-  display: flex; gap: 2rem; list-style: none;
-}
-.tech-nav-links a {
-  color: var(--t-muted);
-  text-decoration: none;
-  font-size: 0.88rem;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-.tech-nav-links a:hover { color: var(--t-blue); }
-
-.tech-nav-btn {
-  background: var(--t-blue);
-  color: white;
-  padding: 0.55rem 1.2rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.2s;
-}
-.tech-nav-btn:hover { background: #1447b8; }
-
-.tech-hero {
-  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
-  padding: 5rem 3rem;
-  text-align: center;
-  min-height: 340px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.tech-hero::before {
-  content: '';
-  position: absolute;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-}
-
-.tech-tag {
-  background: rgba(99,102,241,0.2);
-  border: 1px solid rgba(99,102,241,0.4);
-  color: #a5b4fc;
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.35rem 1rem;
-  border-radius: 100px;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
-  position: relative;
-}
-
-.tech-hero h1 {
-  font-size: clamp(1.8rem, 3.5vw, 3rem);
-  font-weight: 700;
-  color: white;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-  position: relative;
-  max-width: 600px;
-}
-
-.tech-hero p {
-  color: rgba(255,255,255,0.6);
-  font-size: 1rem;
-  max-width: 480px;
-  margin-bottom: 2rem;
-  position: relative;
-}
-
-.tech-hero-btns { display: flex; gap: 1rem; position: relative; flex-wrap: wrap; justify-content: center; }
-
-.t-btn-primary {
-  background: linear-gradient(135deg, var(--t-blue), var(--t-indigo));
-  color: white;
-  padding: 0.8rem 1.8rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.t-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,86,219,0.4); }
-
-.t-btn-ghost {
-  background: rgba(255,255,255,0.1);
-  color: white;
-  padding: 0.8rem 1.8rem;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 0.9rem;
-  text-decoration: none;
-  border: 1px solid rgba(255,255,255,0.15);
-  transition: background 0.2s;
-}
-.t-btn-ghost:hover { background: rgba(255,255,255,0.15); }
-
-.tech-services {
-  background: var(--t-bg);
-  padding: 4rem 3rem;
-}
-
-.tech-services h2 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--t-text);
-  text-align: center;
-  margin-bottom: 0.5rem;
-}
-
-.tech-services > p {
-  text-align: center;
-  color: var(--t-muted);
-  margin-bottom: 2.5rem;
-  font-size: 0.95rem;
-}
-
-.tech-services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.tech-service-card {
-  background: var(--t-surface);
-  border: 1px solid var(--t-border);
-  border-radius: 12px;
-  padding: 1.8rem;
-  transition: box-shadow 0.2s, transform 0.2s;
-}
-.tech-service-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-2px); }
-
-.tech-service-icon {
-  width: 44px; height: 44px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, rgba(26,86,219,0.1), rgba(67,56,202,0.1));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-}
-
-.tech-service-card h3 { font-size: 1rem; font-weight: 600; color: var(--t-text); margin-bottom: 0.4rem; }
-.tech-service-card p { font-size: 0.85rem; color: var(--t-muted); line-height: 1.6; }
-
-.tech-about {
-  background: var(--t-surface);
-  padding: 4rem 3rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-  border-top: 1px solid var(--t-border);
-}
-
-.tech-about-text h2 { font-size: 1.8rem; font-weight: 700; color: var(--t-text); margin-bottom: 1rem; }
-.tech-about-text p { color: var(--t-muted); font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.7; }
-
-.tech-metrics {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.2rem;
-}
-
-.tech-metric {
-  background: var(--t-bg);
-  border-radius: 10px;
-  padding: 1.2rem;
-  text-align: center;
-  border: 1px solid var(--t-border);
-}
-.tech-metric-num { font-size: 2rem; font-weight: 700; color: var(--t-blue); }
-.tech-metric-label { font-size: 0.8rem; color: var(--t-muted); }
-
-.tech-contact {
-  background: linear-gradient(135deg, #0f172a, #1e1b4b);
-  padding: 3rem;
-  text-align: center;
-}
-
-.tech-contact h2 { font-size: 1.6rem; font-weight: 700; color: white; margin-bottom: 0.5rem; }
-.tech-contact p { color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; font-size: 0.9rem; }
-
-/* ==============================
-   DEMO 3: PERSONAL BRAND / PORTFOLIO
-============================== */
-.personal {
-  font-family: 'Cormorant Garamond', serif;
-  --p-bg: #faf8f5;
-  --p-surface: #ffffff;
-  --p-ink: #1a1a1a;
-  --p-muted: #8a8070;
-  --p-accent: #c0392b;
-  --p-border: rgba(0,0,0,0.08);
-}
-
-.personal-header {
-  background: var(--p-bg);
-  padding: 2rem 3rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--p-border);
-}
-
-.personal-logo {
-  font-size: 1.6rem;
-  font-style: italic;
-  color: var(--p-ink);
-  letter-spacing: -0.02em;
-}
-
-.personal-nav {
-  display: flex;
-  gap: 2.5rem;
-  list-style: none;
-}
-.personal-nav a {
-  text-decoration: none;
-  color: var(--p-muted);
-  font-size: 0.9rem;
-  font-style: italic;
-  transition: color 0.2s;
-}
-.personal-nav a:hover { color: var(--p-accent); }
-
-.personal-about {
-  background: var(--p-bg);
-  padding: 5rem 3rem;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 4rem;
-  align-items: center;
-}
-
-.personal-avatar {
-  width: 160px; height: 160px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #d4c5a9, #a89070);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4rem;
-  flex-shrink: 0;
-  border: 3px solid rgba(0,0,0,0.1);
-}
-
-.personal-about-text h2 {
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  color: var(--p-ink);
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 0.5rem;
-}
-.personal-about-text h2 em { color: var(--p-accent); }
-.personal-about-text .subtitle {
-  font-size: 1.1rem;
-  color: var(--p-muted);
-  font-style: italic;
-  margin-bottom: 1.2rem;
-}
-.personal-about-text p {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.95rem;
-  color: var(--p-muted);
-  line-height: 1.7;
-  max-width: 500px;
-}
-
-.personal-projects {
-  background: var(--p-surface);
-  padding: 4rem 3rem;
-  border-top: 1px solid var(--p-border);
-}
-
-.personal-projects h2 {
-  font-size: 2rem;
-  color: var(--p-ink);
-  margin-bottom: 2rem;
-}
-
-.personal-projects-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.personal-project-item {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 2rem;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--p-border);
-  transition: padding-left 0.2s;
-}
-.personal-project-item:hover { padding-left: 1rem; }
-.personal-project-item:first-child { border-top: 1px solid var(--p-border); }
-
-.project-num {
-  font-size: 0.85rem;
-  color: var(--p-accent);
-  font-weight: 700;
-  width: 32px;
-}
-
-.project-details h3 {
-  font-size: 1.2rem;
-  color: var(--p-ink);
-  margin-bottom: 0.2rem;
-}
-.project-details p {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.82rem;
-  color: var(--p-muted);
-}
-
-.project-tag {
-  background: rgba(192,57,43,0.08);
-  color: var(--p-accent);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.75rem;
-  padding: 0.3rem 0.8rem;
-  border-radius: 100px;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.personal-contact {
-  background: var(--p-ink);
-  padding: 4rem 3rem;
-  text-align: center;
-}
-
-.personal-contact h2 {
-  font-size: 2.5rem;
-  color: white;
-  margin-bottom: 0.5rem;
-}
-.personal-contact h2 em { color: var(--p-accent); }
-.personal-contact p {
-  font-family: 'DM Sans', sans-serif;
-  color: rgba(255,255,255,0.5);
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
-}
-
-.p-contact-btn {
-  display: inline-block;
-  border: 1px solid rgba(255,255,255,0.3);
-  color: white;
-  padding: 0.8rem 2rem;
-  font-size: 1rem;
-  font-style: italic;
-  text-decoration: none;
-  border-radius: 2px;
-  transition: background 0.2s, border-color 0.2s;
-}
-.p-contact-btn:hover { background: var(--p-accent); border-color: var(--p-accent); }
-
-/* ==============================
-   PROJECTS SECTION WRAPPER
-============================== */
-.projects-section-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 2.5rem 6rem;
-}
-
-.project-type-label {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.project-type-label span {
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-weight: 500;
-}
-
-.project-type-label::before {
-  content: '';
-  display: block;
-  width: 40px; height: 1px;
-  background: var(--border);
-}
-
-/* ==============================
-   FINAL CTA / CONTACT
-============================== */
-#contact {
-  border-top: 1px solid var(--border);
-}
-
-.cta-section {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 8rem 2.5rem;
-  text-align: center;
-}
-
-.cta-section h2 {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(2.2rem, 5vw, 4rem);
-  font-weight: 700;
-  color: var(--white);
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  margin-bottom: 1.5rem;
-}
-
-.cta-section h2 em { font-style: italic; color: var(--accent); }
-
-.cta-section p {
-  color: var(--muted);
-  font-size: 1.05rem;
-  margin-bottom: 3rem;
-  max-width: 480px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.contact-cards {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 3rem;
-  flex-wrap: wrap;
-}
-
-.contact-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.5rem 2rem;
-  text-align: left;
-  min-width: 220px;
-  transition: border-color 0.2s, transform 0.2s;
-  text-decoration: none;
-}
-.contact-card:hover {
-  border-color: rgba(200,245,66,0.3);
-  transform: translateY(-3px);
-}
-
-.contact-card-icon { font-size: 1.6rem; margin-bottom: 0.7rem; }
-
-.contact-card-label {
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-weight: 600;
-  margin-bottom: 0.3rem;
-}
-
-.contact-card-value {
-  font-size: 0.95rem;
-  color: var(--white);
-  font-weight: 500;
-}
-
-.cta-btn-large {
-  background: var(--accent);
-  color: #0a0a0f;
-  padding: 1rem 2.8rem;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 1rem;
-  text-decoration: none;
-  display: inline-block;
-  letter-spacing: 0.02em;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.cta-btn-large:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(200,245,66,0.35);
-}
-
-/* ==============================
-   FOOTER
-============================== */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 2rem 2.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  max-width: 100%;
-}
-
-.footer-logo {
-  font-family: 'Fraunces', serif;
-  font-size: 1.1rem;
-  color: var(--white);
-}
-.footer-logo span { color: var(--accent); }
-
-footer p {
-  font-size: 0.82rem;
-  color: var(--muted);
-}
-
-/* ==============================
-   ANIMATIONS
-============================== */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ==============================
-   RESPONSIVE
-============================== */
-@media (max-width: 768px) {
-  .main-nav { padding: 1rem 1.5rem; }
-  .nav-links { display: none; }
-  .hero { padding: 6rem 1.5rem 4rem; }
-  .hero h1 { font-size: clamp(2.2rem, 8vw, 4rem); }
-  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .section { padding: 4rem 1.5rem; }
-  .projects-header { padding: 4rem 1.5rem 2rem; }
-  .projects-section-inner { padding: 0 1.5rem 4rem; }
-
-  /* coffee */
-  .coffee-nav { padding: 1rem 1.5rem; }
-  .coffee-nav-links { display: none; }
-  .coffee-hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
-  .coffee-menu-grid { grid-template-columns: 1fr; }
-  .coffee-menu { padding: 3rem 1.5rem; }
-  .coffee-contact { padding: 2rem 1.5rem; flex-direction: column; }
-
-  /* tech */
-  .tech-nav { padding: 1rem 1.5rem; }
-  .tech-nav-links { display: none; }
-  .tech-hero { padding: 3rem 1.5rem; }
-  .tech-services { padding: 3rem 1.5rem; }
-  .tech-services-grid { grid-template-columns: 1fr; }
-  .tech-about { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
-  .tech-contact { padding: 2.5rem 1.5rem; }
-
-  /* personal */
-  .personal-header { padding: 1.2rem 1.5rem; }
-  .personal-nav { display: none; }
-  .personal-about { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
-  .personal-projects { padding: 3rem 1.5rem; }
-  .personal-contact { padding: 3rem 1.5rem; }
-  .personal-project-item { grid-template-columns: auto 1fr; gap: 1rem; }
-  .project-tag { display: none; }
-
-  .cta-section { padding: 5rem 1.5rem; }
-  .contact-cards { flex-direction: column; align-items: center; }
-  .contact-card { width: 100%; max-width: 320px; }
-
-  footer { padding: 1.5rem; flex-direction: column; text-align: center; }
-}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#0a0a0f;--bg2:#111118;--bg3:#16161f;--bg4:#1c1c28;
+--accent:#7c5cfc;--accent2:#a78bfa;--accent3:#c4b5fd;
+--text:#f0eeff;--text2:#b8b0d4;--text3:#7a7295;
+--border:rgba(124,92,252,0.2);--border2:rgba(124,92,252,0.08);
+}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 1.5rem}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(10,10,15,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border2);padding:.9rem 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.15rem;font-weight:600;letter-spacing:-.01em}
+.logo span{color:var(--accent2)}
+.nav-links{display:flex;gap:2rem;font-size:.9rem;color:var(--text2)}
+.nav-links a{transition:color .2s}.nav-links a:hover{color:var(--accent3)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.5rem;border-radius:8px;font-size:.9rem;font-weight:500;cursor:pointer;transition:all .2s;border:none;text-decoration:none}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:#6d4ef0;transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--accent2);border:1px solid var(--border)}.btn-outline:hover{background:rgba(124,92,252,.1);border-color:var(--accent2)}
+.btn-nav{padding:.5rem 1.1rem;background:var(--accent);color:#fff;border-radius:7px;font-size:.85rem;font-weight:500;transition:background .2s}.btn-nav:hover{background:#6d4ef0}
+.nav-menu{display:none}
+@media(max-width:700px){.nav-links{display:none}.nav-menu{display:block;background:none;border:none;cursor:pointer;color:var(--text2)}.hamburger{width:22px;height:2px;background:var(--text);display:block;position:relative}.hamburger::before,.hamburger::after{content:'';position:absolute;width:22px;height:2px;background:var(--text)}.hamburger::before{top:-6px}.hamburger::after{top:6px}}
+.mobile-menu{display:none;flex-direction:column;gap:.5rem;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:1rem;margin-top:.5rem}
+.mobile-menu.open{display:flex}.mobile-menu a{font-size:.95rem;color:var(--text2);padding:.4rem 0;border-bottom:1px solid var(--border2)}.mobile-menu a:last-child{border-bottom:none}
+
+section{padding:5rem 0}
+.hero{padding:7rem 0 5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(ellipse,rgba(124,92,252,.15) 0%,transparent 70%);pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(124,92,252,.12);border:1px solid var(--border);color:var(--accent3);font-size:.8rem;padding:.35rem .9rem;border-radius:999px;margin-bottom:1.5rem}
+.badge-dot{width:6px;height:6px;background:var(--accent2);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}
+h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:1.25rem}
+h1 .highlight{background:linear-gradient(135deg,var(--accent2),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:1.1rem;color:var(--text2);max-width:560px;margin:0 auto 2.5rem}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hero-stats{display:flex;gap:2.5rem;justify-content:center;margin-top:3.5rem;flex-wrap:wrap}
+.stat{text-align:center}.stat-num{font-size:1.8rem;font-weight:700;color:var(--accent2)}.stat-label{font-size:.8rem;color:var(--text3);margin-top:.1rem}
+
+.section-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent2);margin-bottom:.75rem}
+h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;letter-spacing:-.01em;line-height:1.2}
+h2 .accent{color:var(--accent2)}
+.section-desc{color:var(--text2);margin-top:.75rem;font-size:1rem;max-width:540px}
+
+.about{background:var(--bg2);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2)}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+@media(max-width:700px){.about-inner{grid-template-columns:1fr}}
+.about-avatar{width:180px;height:180px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#a78bfa);display:flex;align-items:center;justify-content:center;font-size:3rem;font-weight:700;color:#fff;margin:0 auto}
+.about-visual{text-align:center}
+.about-badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.tag{background:rgba(124,92,252,.1);border:1px solid var(--border);color:var(--accent3);font-size:.78rem;padding:.3rem .75rem;border-radius:6px}
+
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;margin-top:2.5rem}
+.service-card{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:1.5rem;transition:all .25s;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .25s}
+.service-card:hover{border-color:var(--border);transform:translateY(-3px)}.service-card:hover::before{opacity:1}
+.service-icon{width:42px;height:42px;background:rgba(124,92,252,.12);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem}
+.service-card h3{font-size:1rem;font-weight:600;margin-bottom:.5rem}
+.service-card p{font-size:.87rem;color:var(--text2);line-height:1.55}
+
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:2.5rem}
+.why-item{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:.75rem;transition:border-color .2s}
+.why-item:hover{border-color:var(--border)}
+.why-check{width:24px;height:24px;min-width:24px;background:rgba(124,92,252,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:.15rem}
+.why-check svg{width:12px;height:12px;stroke:var(--accent2);fill:none;stroke-width:2.5}
+.why-item h4{font-size:.9rem;font-weight:600;margin-bottom:.2rem}
+.why-item p{font-size:.82rem;color:var(--text3)}
+
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-top:2.5rem}
+.review-card{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:1.5rem;transition:border-color .2s}.review-card:hover{border-color:var(--border)}
+.stars{color:var(--accent2);font-size:.9rem;margin-bottom:.75rem;letter-spacing:.1em}
+.review-text{font-size:.9rem;color:var(--text2);line-height:1.6;margin-bottom:1rem}
+.reviewer{display:flex;align-items:center;gap:.75rem}
+.reviewer-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:600;color:#fff;min-width:36px}
+.reviewer-name{font-size:.87rem;font-weight:600}.reviewer-role{font-size:.78rem;color:var(--text3)}
+
+.cta-section{background:var(--bg2);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);text-align:center}
+.cta-box{background:linear-gradient(135deg,rgba(124,92,252,.12),rgba(167,139,250,.06));border:1px solid var(--border);border-radius:20px;padding:3rem 2rem}
+.cta-box h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:1rem}
+.cta-box p{color:var(--text2);margin-bottom:2rem;max-width:480px;margin-left:auto;margin-right:auto}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+.faq-list{margin-top:2.5rem;display:flex;flex-direction:column;gap:.75rem;max-width:720px}
+.faq-item{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;overflow:hidden}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;cursor:pointer;font-size:.95rem;font-weight:500;gap:1rem;transition:background .2s;user-select:none}
+.faq-q:hover{background:rgba(124,92,252,.05)}
+.faq-arrow{width:20px;height:20px;min-width:20px;border-radius:50%;background:rgba(124,92,252,.12);display:flex;align-items:center;justify-content:center;transition:transform .25s}
+.faq-arrow svg{width:10px;height:10px;stroke:var(--accent2);fill:none;stroke-width:2.5}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{display:none;padding:0 1.25rem 1rem;font-size:.87rem;color:var(--text2);line-height:1.6}
+.faq-item.open .faq-a{display:block}
+
+.contact-bg{background:var(--bg2);border-top:1px solid var(--border2)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;margin-top:2.5rem;align-items:start}
+@media(max-width:700px){.contact-grid{grid-template-columns:1fr}}
+.contact-info-item{display:flex;align-items:center;gap:.9rem;padding:.9rem 0;border-bottom:1px solid var(--border2)}
+.contact-info-item:last-child{border-bottom:none}
+.contact-icon{width:38px;height:38px;min-width:38px;background:rgba(124,92,252,.12);border-radius:9px;display:flex;align-items:center;justify-content:center}
+.contact-icon svg{width:16px;height:16px;stroke:var(--accent2);fill:none;stroke-width:1.8}
+.contact-label{font-size:.75rem;color:var(--text3);margin-bottom:.1rem}
+.contact-val{font-size:.9rem;font-weight:500}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+.form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.form-group label{font-size:.8rem;color:var(--text2);font-weight:500}
+.form-group input,.form-group textarea,.form-group select{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-size:.9rem;padding:.7rem .9rem;outline:none;transition:border-color .2s;font-family:inherit;resize:vertical}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent)}
+.form-group textarea{min-height:100px}
+.form-success{display:none;background:rgba(124,92,252,.1);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;text-align:center;color:var(--accent3);font-size:.9rem;margin-top:.75rem}
+
+footer{padding:2rem 0;border-top:1px solid var(--border2);text-align:center}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-size:1rem;font-weight:600}.footer-logo span{color:var(--accent2)}
+.footer-copy{font-size:.82rem;color:var(--text3)}
+.footer-links{display:flex;gap:1.25rem}.footer-links a{font-size:.82rem;color:var(--text3);transition:color .2s}.footer-links a:hover{color:var(--accent2)}
+
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
 </style>
-</head>
-<body>
 
-<!-- ==============================
-     MAIN PORTFOLIO NAV
-============================== -->
-<nav class="main-nav">
-  <div class="nav-logo">michael<span>.</span>dev</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <div class="logo">michal<span>.webdev</span></div>
+      <div class="nav-links">
+        <a href="#o-mnie">O mnie</a>
+        <a href="#oferta">Oferta</a>
+        <a href="#opinie">Opinie</a>
+        <a href="#faq">FAQ</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <a href="#kontakt" class="btn-nav">Napisz do mnie</a>
+      <button class="nav-menu" onclick="toggleMenu()" aria-label="Menu"><span class="hamburger"></span></button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#o-mnie" onclick="closeMenu()">O mnie</a>
+      <a href="#oferta" onclick="closeMenu()">Oferta</a>
+      <a href="#opinie" onclick="closeMenu()">Opinie</a>
+      <a href="#faq" onclick="closeMenu()">FAQ</a>
+      <a href="#kontakt" onclick="closeMenu()">Kontakt</a>
+    </div>
+  </div>
 </nav>
 
-<!-- ==============================
-     HERO
-============================== -->
-<section class="hero" id="home">
-  <div class="hero-grid-bg"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-glow2"></div>
-  <div class="hero-content">
-    <div class="hero-badge">Available for new projects</div>
-    <h1>Professional Website Development<br>for <em>Individuals</em> &amp; Businesses</h1>
-    <p class="hero-intro">
-      With 3 years of hands-on experience, I build modern, fast, and user-friendly websites for clients of all sizes — from personal brands to large companies.
-    </p>
-    <div class="hero-demo-note">
-      Everything you see below is a sample project created to demonstrate my skills.
+<section class="hero">
+  <div class="container">
+    <div class="badge"><span class="badge-dot"></span> Dostępny dla nowych projektów</div>
+    <h1>Tworzę nowoczesne strony<br>internetowe, które <span class="highlight">sprzedają</span></h1>
+    <p class="hero-sub">Pomagam firmom zaistnieć w sieci i zwiększyć sprzedaż dzięki profesjonalnym stronom internetowym</p>
+    <div class="hero-btns">
+      <a href="#kontakt" class="btn btn-primary">Skontaktuj się ↗</a>
+      <a href="#oferta" class="btn btn-outline">Zobacz ofertę</a>
     </div>
-
+    <div class="hero-stats fade-in">
+      <div class="stat"><div class="stat-num">3+</div><div class="stat-label">lata doświadczenia</div></div>
+      <div class="stat"><div class="stat-num">20+</div><div class="stat-label">zadowolonych klientów</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">projektów na czas</div></div>
+    </div>
   </div>
 </section>
 
-<!-- ==============================
-     ABOUT ME
-============================== -->
-<section id="about">
-  <div class="section">
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <div class="section-label">About Me</div>
-        <h2 class="section-title">Crafting websites people<br>love to use</h2>
-        <p>
-          I'm a web developer with <strong>3 years of experience</strong> building high-quality websites for clients ranging from solo entrepreneurs to large-scale businesses. My focus is always on <strong>modern design, performance, and usability</strong> — because your website should work as hard as you do.
-        </p>
-        <p>
-          I work closely with clients at every stage of the process, from concept to launch, ensuring the final product reflects their vision and meets real-world goals. Whether you need a landing page, a full business site, or a custom portfolio — I've got you covered.
-        </p>
-        <div class="lang-tags">
-          <span class="lang-tag">🇵🇱 Polish</span>
-          <span class="lang-tag">🇬🇧 English</span>
-        </div>
+<section id="o-mnie" class="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-visual fade-in">
+        <div class="about-avatar">M</div>
       </div>
-      <div class="about-stats reveal">
-        <div class="stat-card">
-          <div class="stat-number">3+</div>
-          <div class="stat-label">Years of Experience</div>
+      <div class="fade-in">
+        <div class="section-label">O mnie</div>
+        <h2>Cześć, jestem <span class="accent">Michał</span></h2>
+        <p style="color:var(--text2);margin-top:.9rem;font-size:.97rem;line-height:1.7">Od ponad 3 lat tworzę strony internetowe, platformy oraz sklepy online. Mam na koncie ponad 20 zadowolonych klientów. Każdy projekt traktuję indywidualnie — zależy mi na tym, żeby strona nie tylko wyglądała świetnie, ale przede wszystkim realizowała cele biznesowe.</p>
+        <div class="about-badges" style="margin-top:1.5rem">
+          <span class="tag">React / Next.js</span>
+          <span class="tag">WordPress</span>
+          <span class="tag">WooCommerce</span>
+          <span class="tag">UI/UX Design</span>
+          <span class="tag">SEO</span>
+          <span class="tag">E-commerce</span>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">∞</div>
-          <div class="stat-label">Attention to Detail</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">2</div>
-          <div class="stat-label">Languages Spoken</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">100%</div>
-          <div class="stat-label">Mobile-First Approach</div>
-        </div>
+        <a href="#kontakt" class="btn btn-primary" style="margin-top:1.75rem">Porozmawiajmy o projekcie</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==============================
-     PROJECT SHOWCASE HEADER
-============================== -->
-<section id="projects">
-  <div class="projects-header reveal">
-    <div class="section-label">Sample Projects</div>
-    <h2 class="section-title">Three demos. Three<br>completely different styles.</h2>
-    <p style="color:var(--muted); max-width:560px; font-size:1rem;">
-      Below you'll find three fully-designed demo websites — each representing a different industry and visual language. These are fictional businesses built purely to showcase range and capability.
-    </p>
-    <div class="demo-disclaimer">
-      ⚠ All businesses, names, and content below are entirely fictional. These are demonstration projects only.
+<section id="oferta">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Oferta</div>
+      <h2>Co mogę dla Ciebie <span class="accent">zrobić?</span></h2>
+      <p class="section-desc">Kompleksowe rozwiązania webowe dopasowane do Twoich potrzeb i celów biznesowych.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-icon">🌐</div>
+        <h3>Strony internetowe</h3>
+        <p>Nowoczesne, szybkie i responsywne strony wizytówkowe, landing page'y oraz strony firmowe zoptymalizowane pod SEO.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">🛒</div>
+        <h3>Sklepy internetowe</h3>
+        <p>Profesjonalne sklepy e-commerce na WooCommerce lub dedykowanych rozwiązaniach. Od pomysłu po wdrożenie i wsparcie.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">🚀</div>
+        <h3>Platformy online</h3>
+        <p>Platformy kursowe, usługowe i subskrypcyjne. Rozwiązania dedykowane dostosowane do Twoich wymagań.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">📈</div>
+        <h3>Sprzedaż online dla sklepów stacjonarnych</h3>
+        <p>Pomoc w przenoszeniu biznesu do sieci. Konfiguracja, wdrożenie i szkolenie z obsługi własnego sklepu online.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ==============================
-     PROJECTS INNER SECTION
-============================== -->
-<div class="projects-section-inner">
-
-  <!-- PROJECT 1: COFFEE SHOP -->
-  <div class="project-type-label reveal"><span>Demo 01 — Local Business Website</span></div>
-  <div class="demo-wrapper coffee reveal">
-    <div class="demo-header-bar">
-      <div class="demo-dots">
-        <span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span>
-      </div>
-      <div class="demo-url">www.morningbrew-demo.com</div>
-      <div class="demo-badge">Demo Project</div>
+<section style="padding:5rem 0;background:var(--bg2);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2)">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Dlaczego warto</div>
+      <h2>Przewagi, które <span class="accent">wyróżniają</span></h2>
     </div>
-
-    <!-- Coffee Nav -->
-    <nav class="coffee-nav">
-      <div class="coffee-logo">Morning <span>Brew</span></div>
-      <ul class="coffee-nav-links">
-        <li><a href="#">Menu</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Location</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-
-    <!-- Coffee Hero -->
-    <div class="coffee-hero">
-      <div class="coffee-hero-text">
-        <h1>Fresh Coffee<br><em>Daily.</em></h1>
-        <p>Artisan roasts, cozy corners, and that perfect morning ritual — right in the heart of your neighbourhood.</p>
-        <a href="#" class="coffee-btn">Explore Our Menu</a>
+    <div class="why-grid">
+      <div class="why-item fade-in">
+        <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div><h4>3+ lata doświadczenia</h4><p>Setki godzin spędzonych nad projektami webowymi</p></div>
       </div>
-      <div class="coffee-hero-visual">
-        <div class="coffee-cup-icon">☕</div>
+      <div class="why-item fade-in">
+        <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div><h4>20+ zadowolonych klientów</h4><p>Sprawdzona historia współpracy z firmami różnych branż</p></div>
+      </div>
+      <div class="why-item fade-in">
+        <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div><h4>Nowoczesny design i UX</h4><p>Estetyczne projekty nastawione na doświadczenie użytkownika</p></div>
+      </div>
+      <div class="why-item fade-in">
+        <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div><h4>Optymalizacja SEO i szybkości</h4><p>Strony, które Google kocha i użytkownicy chętnie odwiedzają</p></div>
+      </div>
+      <div class="why-item fade-in">
+        <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div><h4>Wsparcie po wdrożeniu</h4><p>Nie zostawiam klientów samych — pomagam też po starcie</p></div>
+      </div>
+      <div class="why-item fade-in">
+        <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div><h4>Indywidualne podejście</h4><p>Każdy projekt jest wyjątkowy i traktuję go z pełnym zaangażowaniem</p></div>
       </div>
     </div>
-
-    <!-- Coffee Menu -->
-    <div class="coffee-menu">
-      <h2>Our <span>Signature</span> Menu</h2>
-      <div class="coffee-menu-grid">
-        <div class="coffee-item">
-          <div class="coffee-item-icon">☕</div>
-          <h3>Flat White</h3>
-          <p>Silky microfoam over a rich double ristretto espresso</p>
-          <div class="price">4.20 zł</div>
-        </div>
-        <div class="coffee-item">
-          <div class="coffee-item-icon">🍵</div>
-          <h3>Matcha Latte</h3>
-          <p>Ceremonial grade matcha with oat milk and honey</p>
-          <div class="price">5.50 zł</div>
-        </div>
-        <div class="coffee-item">
-          <div class="coffee-item-icon">🥐</div>
-          <h3>Almond Croissant</h3>
-          <p>Flaky, buttery, filled with frangipane almond cream</p>
-          <div class="price">3.80 zł</div>
-        </div>
-        <div class="coffee-item">
-          <div class="coffee-item-icon">🧋</div>
-          <h3>Cold Brew</h3>
-          <p>24-hour steeped Colombian beans over ice</p>
-          <div class="price">4.80 zł</div>
-        </div>
-        <div class="coffee-item">
-          <div class="coffee-item-icon">🍰</div>
-          <h3>Carrot Cake</h3>
-          <p>Homemade, spiced with cinnamon &amp; cream cheese frosting</p>
-          <div class="price">6.00 zł</div>
-        </div>
-        <div class="coffee-item">
-          <div class="coffee-item-icon">🫖</div>
-          <h3>Earl Grey Tea</h3>
-          <p>Single-origin bergamot blend, brewed to perfection</p>
-          <div class="price">3.00 zł</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Coffee Contact -->
-    <div class="coffee-contact">
-      <div class="coffee-contact-info">
-        <h3>Find Us Here</h3>
-        <p>ul. Kawowa 14, Warszawa · Open every day</p>
-        <p style="margin-top:0.3rem; font-style:italic; color:#a08060;">☎ +48 000 000 000 (sample)</p>
-      </div>
-      <div class="coffee-hours">
-        <strong>Opening Hours</strong>
-        Mon – Fri: 7:00 – 20:00<br>
-        Saturday: 8:00 – 18:00<br>
-        Sunday: 9:00 – 16:00
-      </div>
-    </div>
-  </div>
-
-  <!-- PROJECT 2: CORPORATE / TECH -->
-  <div class="project-type-label reveal"><span>Demo 02 — Corporate / Tech Company</span></div>
-  <div class="demo-wrapper tech reveal">
-    <div class="demo-header-bar">
-      <div class="demo-dots">
-        <span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span>
-      </div>
-      <div class="demo-url">www.nexatech-demo.com</div>
-      <div class="demo-badge">Demo Project</div>
-    </div>
-
-    <!-- Tech Nav -->
-    <nav class="tech-nav">
-      <div class="tech-logo">
-        <div class="tech-logo-mark"></div>
-        NexaTech
-      </div>
-      <ul class="tech-nav-links">
-        <li><a href="#">Services</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Case Studies</a></li>
-        <li><a href="#">Blog</a></li>
-      </ul>
-      <a href="#" class="tech-nav-btn">Get Started</a>
-    </nav>
-
-    <!-- Tech Hero -->
-    <div class="tech-hero">
-      <div class="tech-tag">Enterprise Software Solutions</div>
-      <h1>Build Smarter. Scale Faster. Lead Further.</h1>
-      <p>We help ambitious companies transform their operations through modern cloud infrastructure, AI integration, and custom software development.</p>
-      <div class="tech-hero-btns">
-        <a href="#" class="t-btn-primary">Request a Demo</a>
-        <a href="#" class="t-btn-ghost">View Case Studies</a>
-      </div>
-    </div>
-
-    <!-- Tech Services -->
-    <div class="tech-services">
-      <h2>Our Services</h2>
-      <p>End-to-end technology solutions tailored to your business</p>
-      <div class="tech-services-grid">
-        <div class="tech-service-card">
-          <div class="tech-service-icon">🌐</div>
-          <h3>Web Development</h3>
-          <p>Scalable, high-performance web applications built with modern frameworks and best practices.</p>
-        </div>
-        <div class="tech-service-card">
-          <div class="tech-service-icon">☁️</div>
-          <h3>Cloud Infrastructure</h3>
-          <p>Migrate, optimise, and manage your cloud environment with zero downtime and maximum reliability.</p>
-        </div>
-        <div class="tech-service-card">
-          <div class="tech-service-icon">🤖</div>
-          <h3>AI Integration</h3>
-          <p>Embed machine learning models and automation directly into your existing business workflows.</p>
-        </div>
-        <div class="tech-service-card">
-          <div class="tech-service-icon">🔐</div>
-          <h3>Cybersecurity</h3>
-          <p>Protect your data and infrastructure with enterprise-grade security audits and monitoring.</p>
-        </div>
-        <div class="tech-service-card">
-          <div class="tech-service-icon">📊</div>
-          <h3>Data Analytics</h3>
-          <p>Turn raw data into actionable insights with custom dashboards and real-time reporting.</p>
-        </div>
-        <div class="tech-service-card">
-          <div class="tech-service-icon">📱</div>
-          <h3>Mobile Apps</h3>
-          <p>Native and cross-platform mobile applications for iOS and Android with elegant UX.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tech About -->
-    <div class="tech-about">
-      <div class="tech-about-text">
-        <h2>Who We Are</h2>
-        <p>NexaTech is a Warsaw-based software consultancy founded in 2018. We partner with companies across Europe and North America to solve their hardest technical challenges.</p>
-        <p>Our team of engineers, designers, and strategists brings deep expertise across the full product lifecycle — from initial discovery through to deployment and ongoing support.</p>
-      </div>
-      <div class="tech-metrics">
-        <div class="tech-metric">
-          <div class="tech-metric-num">150+</div>
-          <div class="tech-metric-label">Projects Delivered</div>
-        </div>
-        <div class="tech-metric">
-          <div class="tech-metric-num">40+</div>
-          <div class="tech-metric-label">Team Members</div>
-        </div>
-        <div class="tech-metric">
-          <div class="tech-metric-num">12</div>
-          <div class="tech-metric-label">Countries Served</div>
-        </div>
-        <div class="tech-metric">
-          <div class="tech-metric-num">98%</div>
-          <div class="tech-metric-label">Client Retention</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tech Contact -->
-    <div class="tech-contact">
-      <h2>Ready to start a project?</h2>
-      <p>Schedule a free 30-minute discovery call with our team.</p>
-      <a href="#" class="t-btn-primary">Book a Call →</a>
-    </div>
-  </div>
-
-  <!-- PROJECT 3: PERSONAL BRAND -->
-  <div class="project-type-label reveal"><span>Demo 03 — Personal Brand / Portfolio</span></div>
-  <div class="demo-wrapper personal reveal">
-    <div class="demo-header-bar">
-      <div class="demo-dots">
-        <span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span>
-      </div>
-      <div class="demo-url">www.anna-kowalski-demo.com</div>
-      <div class="demo-badge">Demo Project</div>
-    </div>
-
-    <!-- Personal Header -->
-    <header class="personal-header">
-      <div class="personal-logo">Anna K.</div>
-      <ul class="personal-nav">
-        <li><a href="#">About</a></li>
-        <li><a href="#">Work</a></li>
-        <li><a href="#">Writing</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </header>
-
-    <!-- Personal About -->
-    <div class="personal-about">
-      <div class="personal-avatar">🎨</div>
-      <div class="personal-about-text">
-        <h2>Brand Designer<br>&amp; <em>Visual Thinker</em></h2>
-        <p class="subtitle">Creating identities that mean something.</p>
-        <p>I'm a Warsaw-based brand designer with 7 years of experience crafting visual identities, editorial layouts, and digital experiences for forward-thinking clients. I believe good design is never decoration — it's communication.</p>
-      </div>
-    </div>
-
-    <!-- Personal Projects -->
-    <div class="personal-projects">
-      <h2>Selected Work</h2>
-      <div class="personal-projects-list">
-        <div class="personal-project-item">
-          <div class="project-num">01</div>
-          <div class="project-details">
-            <h3>Herb &amp; Honey — Brand Identity</h3>
-            <p>Full visual identity for an organic skincare brand based in Kraków</p>
-          </div>
-          <div class="project-tag">Branding</div>
-        </div>
-        <div class="personal-project-item">
-          <div class="project-num">02</div>
-          <div class="project-details">
-            <h3>Kultura Magazine — Editorial Design</h3>
-            <p>Art direction and layout for a bi-annual print and digital publication</p>
-          </div>
-          <div class="project-tag">Editorial</div>
-        </div>
-        <div class="personal-project-item">
-          <div class="project-num">03</div>
-          <div class="project-details">
-            <h3>Kino Nova — Campaign &amp; Poster Series</h3>
-            <p>A set of 12 event posters for an independent cinema's autumn season</p>
-          </div>
-          <div class="project-tag">Print</div>
-        </div>
-        <div class="personal-project-item">
-          <div class="project-num">04</div>
-          <div class="project-details">
-            <h3>Łódź Design Festival — Digital Identity</h3>
-            <p>Website design system and motion graphics for annual design festival</p>
-          </div>
-          <div class="project-tag">Digital</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Personal Contact -->
-    <div class="personal-contact">
-      <h2>Let's make something<br><em>worth remembering.</em></h2>
-      <p>Open to select freelance projects and collaborations.</p>
-      <a href="#" class="p-contact-btn">Get in touch →</a>
-    </div>
-  </div>
-
-</div><!-- end projects-section-inner -->
-
-<!-- ==============================
-     FINAL CTA / CONTACT
-============================== -->
-<section id="contact">
-  <div class="cta-section">
-    <div class="section-label reveal">Work With Me</div>
-    <h2 class="reveal">Want a website<br><em>like this?</em><br>Let's work together.</h2>
-    <p class="reveal">I'm available for new projects. Whether you're a freelancer, small business, or large company — I'd love to hear about what you're building.</p>
-
-    <div class="contact-cards reveal">
-      <a href="mailto:michaltcho@icloud.com" class="contact-card">
-        <div class="contact-card-icon">📧</div>
-        <div class="contact-card-label">Email</div>
-        <div class="contact-card-value">michaltcho@icloud.com</div>
-      </a>
-      <a href="https://wa.me/48572079637" class="contact-card" target="_blank" rel="noopener">
-        <div class="contact-card-icon">💬</div>
-        <div class="contact-card-label">WhatsApp</div>
-        <div class="contact-card-value">+48 572 079 637</div>
-      </a>
-    </div>
-
-    <a href="mailto:michaltcho@icloud.com" class="cta-btn-large reveal">Contact Me</a>
   </div>
 </section>
 
-<!-- ==============================
-     FOOTER
-============================== -->
+<section id="opinie">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Opinie</div>
+      <h2>Co mówią <span class="accent">klienci?</span></h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card fade-in">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Współpraca przebiegła sprawnie i profesjonalnie. Michał zaproponował ciekawe rozwiązania, dotrzymał terminów, a strona działa świetnie. Polecam!</p>
+        <div class="reviewer"><div class="reviewer-avatar">AK</div><div><div class="reviewer-name">Anna Kowalska</div><div class="reviewer-role">Właścicielka butiku online</div></div></div>
+      </div>
+      <div class="review-card fade-in">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Sklep internetowy, który Michał zbudował dla nas, znacząco zwiększył nasze obroty. Świetna komunikacja przez cały czas trwania projektu.</p>
+        <div class="reviewer"><div class="reviewer-avatar">TN</div><div><div class="reviewer-name">Tomasz Nowak</div><div class="reviewer-role">Właściciel sklepu stacjonarnego</div></div></div>
+      </div>
+      <div class="review-card fade-in">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Profesjonalne podejście, dobra wycena i strona, która wygląda dokładnie tak, jak sobie wymarzyłam. Na pewno wrócę z kolejnym projektem.</p>
+        <div class="reviewer"><div class="reviewer-avatar">MZ</div><div><div class="reviewer-name">Marta Zając</div><div class="reviewer-role">Coach & trenerka</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box fade-in">
+      <div class="section-label" style="text-align:center">Gotowy na zmiany?</div>
+      <h2>Chcesz stronę, która <span class="accent">przyciąga klientów?</span></h2>
+      <p>Napisz do mnie i porozmawiajmy o Twoim projekcie. Bezpłatna konsultacja, bez zobowiązań.</p>
+      <div class="cta-btns">
+        <a href="#kontakt" class="btn btn-primary">Napisz do mnie ↗</a>
+        <a href="mailto:michalwebdev@outlook.com" class="btn btn-outline">michalwebdev@outlook.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">FAQ</div>
+      <h2>Często zadawane <span class="accent">pytania</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item fade-in">
+        <div class="faq-q" onclick="toggleFaq(this)">Ile trwa realizacja strony internetowej?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div>
+        <div class="faq-a">Czas realizacji zależy od skali projektu. Prosta strona wizytówkowa to zazwyczaj 1–2 tygodnie, sklep internetowy 3–5 tygodni, a bardziej rozbudowana platforma od 6 do 12 tygodni. Każdy projekt wyceniam indywidualnie po rozmowie wstępnej.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q" onclick="toggleFaq(this)">Ile kosztuje strona internetowa?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div>
+        <div class="faq-a">Ceny zaczynają się od ok. 1500 zł za prostą stronę wizytówkową. Sklepy internetowe to zazwyczaj 4000–10000 zł w zależności od funkcjonalności. Każda wycena jest indywidualna — skontaktuj się ze mną, żeby omówić szczegóły.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q" onclick="toggleFaq(this)">Czy oferujesz wsparcie i aktualizacje po wdrożeniu?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div>
+        <div class="faq-a">Tak — oferuję miesięczne pakiety wsparcia technicznego obejmujące aktualizacje, drobne zmiany treści i opiekę nad bezpieczeństwem strony. Szczegóły ustalamy indywidualnie.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q" onclick="toggleFaq(this)">Na jakiej technologii budowane są strony?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div>
+        <div class="faq-a">Dobór technologii zależy od projektu. Korzystam z WordPress, WooCommerce, React, Next.js i rozwiązań dedykowanych. Zawsze dobieramy technologię tak, by najlepiej odpowiadała potrzebom klienta.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q" onclick="toggleFaq(this)">Czy mogę samodzielnie edytować treści na stronie?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div>
+        <div class="faq-a">Oczywiście. Dbam o to, żeby klient mógł samodzielnie zarządzać treściami. Do większości projektów dostarczam intuicyjny CMS (np. WordPress) wraz z krótkim szkoleniem z obsługi.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q" onclick="toggleFaq(this)">Czy strona będzie responsywna i szybka?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div>
+        <div class="faq-a">Tak — to standard, nie opcja. Każda strona jest w pełni responsywna (działa na telefonach, tabletach i komputerach) i zoptymalizowana pod kątem szybkości ładowania oraz SEO.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt" class="contact-bg">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Kontakt</div>
+      <h2>Napisz do <span class="accent">mnie</span></h2>
+      <p class="section-desc">Opisz swój projekt, a odezwę się w ciągu 24 godzin.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="fade-in">
+        <div class="contact-info-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></div>
+          <div><div class="contact-label">Email</div><div class="contact-val">michalwebdev@outlook.com</div></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div><div class="contact-label">Telefon</div><div class="contact-val">572 079 637</div></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M21 2H3v16h5l3 3 3-3h7V2z"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="14" y2="12"/></svg></div>
+          <div><div class="contact-label">Odpowiedź</div><div class="contact-val">W ciągu 24 godzin</div></div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:14px;padding:1.75rem">
+          <div class="form-row">
+            <div class="form-group"><label>Imię</label><input type="text" placeholder="Twoje imię" id="fi"></div>
+            <div class="form-group"><label>Email</label><input type="email" placeholder="adres@email.com" id="fe"></div>
+          </div>
+          <div class="form-group"><label>Temat</label>
+            <select id="fs"><option value="">Wybierz temat</option><option>Strona internetowa</option><option>Sklep online</option><option>Platforma</option><option>Inne</option></select>
+          </div>
+          <div class="form-group"><label>Wiadomość</label><textarea placeholder="Opisz swój projekt..." id="fm"></textarea></div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="submitForm()">Wyślij wiadomość ↗</button>
+          <div class="form-success" id="formSuccess">Dziękuję za wiadomość! Odezwę się w ciągu 24 godzin.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
-  <div class="footer-logo">michael<span>.</span>dev</div>
-  <p>© 2025 Michał · All demo projects are fictional and for showcase purposes only.</p>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">michal<span>.webdev</span></div>
+      <div class="footer-copy">© 2024 michal.webdev — Wszystkie prawa zastrzeżone</div>
+      <div class="footer-links">
+        <a href="#oferta">Oferta</a>
+        <a href="#opinie">Opinie</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
-<!-- ==============================
-     SCROLL REVEAL JS
-============================== -->
 <script>
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-  reveals.forEach(el => observer.observe(el));
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open')}
+function toggleFaq(el){
+  const item=el.parentElement;
+  const wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen)item.classList.add('open');
+}
+function submitForm(){
+  const n=document.getElementById('fi').value;
+  const e=document.getElementById('fe').value;
+  const m=document.getElementById('fm').value;
+  if(!n||!e||!m){alert('Wypełnij wymagane pola');return;}
+  const s=document.getElementById('formSuccess');
+  s.style.display='block';
+  document.getElementById('fi').value='';
+  document.getElementById('fe').value='';
+  document.getElementById('fs').value='';
+  document.getElementById('fm').value='';
+}
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
 </script>
-
-</body>
-</html>
