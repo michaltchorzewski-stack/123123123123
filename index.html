@@ -2,7 +2,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
---bg:#0a0a0f;--bg2:#111118;--bg3:#16161f;--bg4:#1c1c28;
+--bg:#0a0a0f;--bg2:#111118;--bg3:#16161f;
 --accent:#7c5cfc;--accent2:#a78bfa;--accent3:#c4b5fd;
 --text:#f0eeff;--text2:#b8b0d4;--text3:#7a7295;
 --border:rgba(124,92,252,0.2);--border2:rgba(124,92,252,0.08);
@@ -49,7 +49,6 @@ h2 .accent{color:var(--accent2)}
 @media(max-width:700px){.about-inner{grid-template-columns:1fr}}
 .about-avatar{width:180px;height:180px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#a78bfa);display:flex;align-items:center;justify-content:center;font-size:3rem;font-weight:700;color:#fff;margin:0 auto}
 .about-visual{text-align:center}
-.about-badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
 .tag{background:rgba(124,92,252,.1);border:1px solid var(--border);color:var(--accent3);font-size:.78rem;padding:.3rem .75rem;border-radius:6px}
 
 .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;margin-top:2.5rem}
@@ -70,7 +69,7 @@ h2 .accent{color:var(--accent2)}
 
 .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-top:2.5rem}
 .review-card{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:1.5rem;transition:border-color .2s}.review-card:hover{border-color:var(--border)}
-.stars{color:var(--accent2);font-size:.9rem;margin-bottom:.75rem;letter-spacing:.1em}
+.stars{color:var(--accent2);font-size:.9rem;margin-bottom:.75rem}
 .review-text{font-size:.9rem;color:var(--text2);line-height:1.6;margin-bottom:1rem}
 .reviewer{display:flex;align-items:center;gap:.75rem}
 .reviewer-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:600;color:#fff;min-width:36px}
@@ -78,8 +77,7 @@ h2 .accent{color:var(--accent2)}
 
 .cta-section{background:var(--bg2);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);text-align:center}
 .cta-box{background:linear-gradient(135deg,rgba(124,92,252,.12),rgba(167,139,250,.06));border:1px solid var(--border);border-radius:20px;padding:3rem 2rem}
-.cta-box h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:1rem}
-.cta-box p{color:var(--text2);margin-bottom:2rem;max-width:480px;margin-left:auto;margin-right:auto}
+.cta-box p{color:var(--text2);margin-bottom:2rem;max-width:480px;margin-left:auto;margin-right:auto;margin-top:1rem}
 .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 
 .faq-list{margin-top:2.5rem;display:flex;flex-direction:column;gap:.75rem;max-width:720px}
@@ -93,24 +91,17 @@ h2 .accent{color:var(--accent2)}
 .faq-item.open .faq-a{display:block}
 
 .contact-bg{background:var(--bg2);border-top:1px solid var(--border2)}
-.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;margin-top:2.5rem;align-items:start}
-@media(max-width:700px){.contact-grid{grid-template-columns:1fr}}
-.contact-info-item{display:flex;align-items:center;gap:.9rem;padding:.9rem 0;border-bottom:1px solid var(--border2)}
-.contact-info-item:last-child{border-bottom:none}
-.contact-icon{width:38px;height:38px;min-width:38px;background:rgba(124,92,252,.12);border-radius:9px;display:flex;align-items:center;justify-content:center}
-.contact-icon svg{width:16px;height:16px;stroke:var(--accent2);fill:none;stroke-width:1.8}
-.contact-label{font-size:.75rem;color:var(--text3);margin-bottom:.1rem}
-.contact-val{font-size:.9rem;font-weight:500}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-@media(max-width:500px){.form-row{grid-template-columns:1fr}}
-.form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
-.form-group label{font-size:.8rem;color:var(--text2);font-weight:500}
-.form-group input,.form-group textarea,.form-group select{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-size:.9rem;padding:.7rem .9rem;outline:none;transition:border-color .2s;font-family:inherit;resize:vertical}
-.form-group input:focus,.form-group textarea:focus{border-color:var(--accent)}
-.form-group textarea{min-height:100px}
-.form-success{display:none;background:rgba(124,92,252,.1);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;text-align:center;color:var(--accent3);font-size:.9rem;margin-top:.75rem}
+.contact-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-top:2.5rem}
+.contact-card{background:var(--bg3);border:1px solid var(--border2);border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.75rem;transition:all .25s}
+.contact-card:hover{border-color:var(--border);transform:translateY(-2px)}
+.contact-card a{color:inherit}
+.contact-icon-wrap{width:48px;height:48px;background:rgba(124,92,252,.12);border-radius:12px;display:flex;align-items:center;justify-content:center}
+.contact-icon-wrap svg{width:20px;height:20px;stroke:var(--accent2);fill:none;stroke-width:1.8}
+.contact-card-label{font-size:.75rem;color:var(--text3);text-transform:uppercase;letter-spacing:.07em}
+.contact-card-val{font-size:.95rem;font-weight:600;color:var(--text)}
+.ig-btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:.25rem;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff;padding:.45rem 1rem;border-radius:7px;font-size:.82rem;font-weight:600;transition:opacity .2s}.ig-btn:hover{opacity:.85}
 
-footer{padding:2rem 0;border-top:1px solid var(--border2);text-align:center}
+footer{padding:2rem 0;border-top:1px solid var(--border2)}
 .footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
 .footer-logo{font-size:1rem;font-weight:600}.footer-logo span{color:var(--accent2)}
 .footer-copy{font-size:.82rem;color:var(--text3)}
@@ -131,7 +122,7 @@ footer{padding:2rem 0;border-top:1px solid var(--border2);text-align:center}
         <a href="#faq">FAQ</a>
         <a href="#kontakt">Kontakt</a>
       </div>
-      <a href="#kontakt" class="btn-nav">Napisz do mnie</a>
+      <a href="https://www.instagram.com/michal.webdev" target="_blank" class="btn-nav">Napisz do mnie</a>
       <button class="nav-menu" onclick="toggleMenu()" aria-label="Menu"><span class="hamburger"></span></button>
     </div>
     <div class="mobile-menu" id="mobileMenu">
@@ -150,7 +141,7 @@ footer{padding:2rem 0;border-top:1px solid var(--border2);text-align:center}
     <h1>Tworzę nowoczesne strony<br>internetowe, które <span class="highlight">sprzedają</span></h1>
     <p class="hero-sub">Pomagam firmom zaistnieć w sieci i zwiększyć sprzedaż dzięki profesjonalnym stronom internetowym</p>
     <div class="hero-btns">
-      <a href="#kontakt" class="btn btn-primary">Skontaktuj się ↗</a>
+      <a href="https://www.instagram.com/michal.webdev" target="_blank" class="btn btn-primary">Skontaktuj się ↗</a>
       <a href="#oferta" class="btn btn-outline">Zobacz ofertę</a>
     </div>
     <div class="hero-stats fade-in">
@@ -171,7 +162,7 @@ footer{padding:2rem 0;border-top:1px solid var(--border2);text-align:center}
         <div class="section-label">O mnie</div>
         <h2>Cześć, jestem <span class="accent">Michał</span></h2>
         <p style="color:var(--text2);margin-top:.9rem;font-size:.97rem;line-height:1.7">Od ponad 3 lat tworzę strony internetowe, platformy oraz sklepy online. Mam na koncie ponad 20 zadowolonych klientów. Każdy projekt traktuję indywidualnie — zależy mi na tym, żeby strona nie tylko wyglądała świetnie, ale przede wszystkim realizowała cele biznesowe.</p>
-        <div class="about-badges" style="margin-top:1.5rem">
+        <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem">
           <span class="tag">React / Next.js</span>
           <span class="tag">WordPress</span>
           <span class="tag">WooCommerce</span>
@@ -179,7 +170,7 @@ footer{padding:2rem 0;border-top:1px solid var(--border2);text-align:center}
           <span class="tag">SEO</span>
           <span class="tag">E-commerce</span>
         </div>
-        <a href="#kontakt" class="btn btn-primary" style="margin-top:1.75rem">Porozmawiajmy o projekcie</a>
+        <a href="https://www.instagram.com/michal.webdev" target="_blank" class="btn btn-primary" style="margin-top:1.75rem">Porozmawiajmy o projekcie ↗</a>
       </div>
     </div>
   </div>
@@ -224,30 +215,12 @@ footer{padding:2rem 0;border-top:1px solid var(--border2);text-align:center}
       <h2>Przewagi, które <span class="accent">wyróżniają</span></h2>
     </div>
     <div class="why-grid">
-      <div class="why-item fade-in">
-        <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
-        <div><h4>3+ lata doświadczenia</h4><p>Setki godzin spędzonych nad projektami webowymi</p></div>
-      </div>
-      <div class="why-item fade-in">
-        <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
-        <div><h4>20+ zadowolonych klientów</h4><p>Sprawdzona historia współpracy z firmami różnych branż</p></div>
-      </div>
-      <div class="why-item fade-in">
-        <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
-        <div><h4>Nowoczesny design i UX</h4><p>Estetyczne projekty nastawione na doświadczenie użytkownika</p></div>
-      </div>
-      <div class="why-item fade-in">
-        <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
-        <div><h4>Optymalizacja SEO i szybkości</h4><p>Strony, które Google kocha i użytkownicy chętnie odwiedzają</p></div>
-      </div>
-      <div class="why-item fade-in">
-        <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
-        <div><h4>Wsparcie po wdrożeniu</h4><p>Nie zostawiam klientów samych — pomagam też po starcie</p></div>
-      </div>
-      <div class="why-item fade-in">
-        <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
-        <div><h4>Indywidualne podejście</h4><p>Każdy projekt jest wyjątkowy i traktuję go z pełnym zaangażowaniem</p></div>
-      </div>
+      <div class="why-item fade-in"><div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><div><h4>3+ lata doświadczenia</h4><p>Setki godzin spędzonych nad projektami webowymi</p></div></div>
+      <div class="why-item fade-in"><div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><div><h4>20+ zadowolonych klientów</h4><p>Sprawdzona historia współpracy z firmami różnych branż</p></div></div>
+      <div class="why-item fade-in"><div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><div><h4>Nowoczesny design i UX</h4><p>Estetyczne projekty nastawione na doświadczenie użytkownika</p></div></div>
+      <div class="why-item fade-in"><div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><div><h4>Optymalizacja SEO i szybkości</h4><p>Strony, które Google kocha i użytkownicy chętnie odwiedzają</p></div></div>
+      <div class="why-item fade-in"><div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><div><h4>Wsparcie po wdrożeniu</h4><p>Nie zostawiam klientów samych — pomagam też po starcie</p></div></div>
+      <div class="why-item fade-in"><div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><div><h4>Indywidualne podejście</h4><p>Każdy projekt jest wyjątkowy i traktuję go z pełnym zaangażowaniem</p></div></div>
     </div>
   </div>
 </section>
@@ -283,9 +256,9 @@ footer{padding:2rem 0;border-top:1px solid var(--border2);text-align:center}
     <div class="cta-box fade-in">
       <div class="section-label" style="text-align:center">Gotowy na zmiany?</div>
       <h2>Chcesz stronę, która <span class="accent">przyciąga klientów?</span></h2>
-      <p>Napisz do mnie i porozmawiajmy o Twoim projekcie. Bezpłatna konsultacja, bez zobowiązań.</p>
+      <p>Napisz do mnie na Instagramie i porozmawiajmy o Twoim projekcie. Bezpłatna konsultacja, bez zobowiązań.</p>
       <div class="cta-btns">
-        <a href="#kontakt" class="btn btn-primary">Napisz do mnie ↗</a>
+        <a href="https://www.instagram.com/michal.webdev" target="_blank" class="btn btn-primary">Napisz na Instagramie ↗</a>
         <a href="mailto:michalwebdev@outlook.com" class="btn btn-outline">michalwebdev@outlook.com</a>
       </div>
     </div>
@@ -299,30 +272,12 @@ footer{padding:2rem 0;border-top:1px solid var(--border2);text-align:center}
       <h2>Często zadawane <span class="accent">pytania</span></h2>
     </div>
     <div class="faq-list">
-      <div class="faq-item fade-in">
-        <div class="faq-q" onclick="toggleFaq(this)">Ile trwa realizacja strony internetowej?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div>
-        <div class="faq-a">Czas realizacji zależy od skali projektu. Prosta strona wizytówkowa to zazwyczaj 1–2 tygodnie, sklep internetowy 3–5 tygodni, a bardziej rozbudowana platforma od 6 do 12 tygodni. Każdy projekt wyceniam indywidualnie po rozmowie wstępnej.</div>
-      </div>
-      <div class="faq-item fade-in">
-        <div class="faq-q" onclick="toggleFaq(this)">Ile kosztuje strona internetowa?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div>
-        <div class="faq-a">Ceny zaczynają się od ok. 1500 zł za prostą stronę wizytówkową. Sklepy internetowe to zazwyczaj 4000–10000 zł w zależności od funkcjonalności. Każda wycena jest indywidualna — skontaktuj się ze mną, żeby omówić szczegóły.</div>
-      </div>
-      <div class="faq-item fade-in">
-        <div class="faq-q" onclick="toggleFaq(this)">Czy oferujesz wsparcie i aktualizacje po wdrożeniu?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div>
-        <div class="faq-a">Tak — oferuję miesięczne pakiety wsparcia technicznego obejmujące aktualizacje, drobne zmiany treści i opiekę nad bezpieczeństwem strony. Szczegóły ustalamy indywidualnie.</div>
-      </div>
-      <div class="faq-item fade-in">
-        <div class="faq-q" onclick="toggleFaq(this)">Na jakiej technologii budowane są strony?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div>
-        <div class="faq-a">Dobór technologii zależy od projektu. Korzystam z WordPress, WooCommerce, React, Next.js i rozwiązań dedykowanych. Zawsze dobieramy technologię tak, by najlepiej odpowiadała potrzebom klienta.</div>
-      </div>
-      <div class="faq-item fade-in">
-        <div class="faq-q" onclick="toggleFaq(this)">Czy mogę samodzielnie edytować treści na stronie?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div>
-        <div class="faq-a">Oczywiście. Dbam o to, żeby klient mógł samodzielnie zarządzać treściami. Do większości projektów dostarczam intuicyjny CMS (np. WordPress) wraz z krótkim szkoleniem z obsługi.</div>
-      </div>
-      <div class="faq-item fade-in">
-        <div class="faq-q" onclick="toggleFaq(this)">Czy strona będzie responsywna i szybka?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div>
-        <div class="faq-a">Tak — to standard, nie opcja. Każda strona jest w pełni responsywna (działa na telefonach, tabletach i komputerach) i zoptymalizowana pod kątem szybkości ładowania oraz SEO.</div>
-      </div>
+      <div class="faq-item fade-in"><div class="faq-q" onclick="toggleFaq(this)">Ile trwa realizacja strony internetowej?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div><div class="faq-a">Czas realizacji zależy od skali projektu. Prosta strona wizytówkowa to zazwyczaj 1–2 tygodnie, sklep internetowy 3–5 tygodni, a bardziej rozbudowana platforma od 6 do 12 tygodni.</div></div>
+      <div class="faq-item fade-in"><div class="faq-q" onclick="toggleFaq(this)">Ile kosztuje strona internetowa?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div><div class="faq-a">Ceny zaczynają się od ok. 1500 zł za prostą stronę wizytówkową. Sklepy internetowe to zazwyczaj 4000–10000 zł. Każda wycena jest indywidualna — napisz do mnie na IG.</div></div>
+      <div class="faq-item fade-in"><div class="faq-q" onclick="toggleFaq(this)">Czy oferujesz wsparcie po wdrożeniu?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div><div class="faq-a">Tak — oferuję miesięczne pakiety wsparcia technicznego obejmujące aktualizacje, drobne zmiany treści i opiekę nad bezpieczeństwem strony.</div></div>
+      <div class="faq-item fade-in"><div class="faq-q" onclick="toggleFaq(this)">Na jakiej technologii budowane są strony?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div><div class="faq-a">Korzystam z WordPress, WooCommerce, React i Next.js. Technologię zawsze dobieramy do potrzeb projektu.</div></div>
+      <div class="faq-item fade-in"><div class="faq-q" onclick="toggleFaq(this)">Czy mogę samodzielnie edytować treści?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div><div class="faq-a">Oczywiście. Do większości projektów dostarczam intuicyjny CMS (np. WordPress) wraz z krótkim szkoleniem z obsługi.</div></div>
+      <div class="faq-item fade-in"><div class="faq-q" onclick="toggleFaq(this)">Czy strona będzie responsywna i szybka?<div class="faq-arrow"><svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg></div></div><div class="faq-a">Tak — to standard. Każda strona jest w pełni responsywna i zoptymalizowana pod kątem szybkości ładowania oraz SEO.</div></div>
     </div>
   </div>
 </section>
@@ -331,37 +286,33 @@ footer{padding:2rem 0;border-top:1px solid var(--border2);text-align:center}
   <div class="container">
     <div class="fade-in">
       <div class="section-label">Kontakt</div>
-      <h2>Napisz do <span class="accent">mnie</span></h2>
-      <p class="section-desc">Opisz swój projekt, a odezwę się w ciągu 24 godzin.</p>
+      <h2>Skontaktuj się <span class="accent">ze mną</span></h2>
+      <p class="section-desc">Wybierz najwygodniejszy sposób — odezwę się tak szybko jak to możliwe.</p>
     </div>
-    <div class="contact-grid">
-      <div class="fade-in">
-        <div class="contact-info-item">
-          <div class="contact-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></div>
-          <div><div class="contact-label">Email</div><div class="contact-val">michalwebdev@outlook.com</div></div>
+    <div class="contact-cards">
+      <div class="contact-card fade-in">
+        <div class="contact-icon-wrap">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         </div>
-        <div class="contact-info-item">
-          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
-          <div><div class="contact-label">Telefon</div><div class="contact-val">572 079 637</div></div>
-        </div>
-        <div class="contact-info-item">
-          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M21 2H3v16h5l3 3 3-3h7V2z"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="14" y2="12"/></svg></div>
-          <div><div class="contact-label">Odpowiedź</div><div class="contact-val">W ciągu 24 godzin</div></div>
-        </div>
+        <div class="contact-card-label">Instagram</div>
+        <div class="contact-card-val">@michal.webdev</div>
+        <a href="https://www.instagram.com/michal.webdev" target="_blank" class="ig-btn">Napisz wiadomość ↗</a>
       </div>
-      <div class="fade-in">
-        <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:14px;padding:1.75rem">
-          <div class="form-row">
-            <div class="form-group"><label>Imię</label><input type="text" placeholder="Twoje imię" id="fi"></div>
-            <div class="form-group"><label>Email</label><input type="email" placeholder="adres@email.com" id="fe"></div>
-          </div>
-          <div class="form-group"><label>Temat</label>
-            <select id="fs"><option value="">Wybierz temat</option><option>Strona internetowa</option><option>Sklep online</option><option>Platforma</option><option>Inne</option></select>
-          </div>
-          <div class="form-group"><label>Wiadomość</label><textarea placeholder="Opisz swój projekt..." id="fm"></textarea></div>
-          <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="submitForm()">Wyślij wiadomość ↗</button>
-          <div class="form-success" id="formSuccess">Dziękuję za wiadomość! Odezwę się w ciągu 24 godzin.</div>
+      <div class="contact-card fade-in">
+        <div class="contact-icon-wrap">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
         </div>
+        <div class="contact-card-label">Email</div>
+        <div class="contact-card-val">michalwebdev@outlook.com</div>
+        <a href="mailto:michalwebdev@outlook.com" class="btn btn-outline" style="margin-top:.25rem;font-size:.82rem;padding:.4rem .9rem">Wyślij email ↗</a>
+      </div>
+      <div class="contact-card fade-in">
+        <div class="contact-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="contact-card-label">Telefon</div>
+        <div class="contact-card-val">572 079 637</div>
+        <a href="tel:+48572079637" class="btn btn-outline" style="margin-top:.25rem;font-size:.82rem;padding:.4rem .9rem">Zadzwoń ↗</a>
       </div>
     </div>
   </div>
@@ -371,11 +322,11 @@ footer{padding:2rem 0;border-top:1px solid var(--border2);text-align:center}
   <div class="container">
     <div class="footer-inner">
       <div class="footer-logo">michal<span>.webdev</span></div>
-      <div class="footer-copy">© 2024 michal.webdev — Wszystkie prawa zastrzeżone</div>
+      <div class="footer-copy" style="font-size:.82rem;color:var(--text3)">© 2024 michal.webdev — Wszystkie prawa zastrzeżone</div>
       <div class="footer-links">
         <a href="#oferta">Oferta</a>
         <a href="#opinie">Opinie</a>
-        <a href="#kontakt">Kontakt</a>
+        <a href="https://www.instagram.com/michal.webdev" target="_blank">Instagram</a>
       </div>
     </div>
   </div>
@@ -390,20 +341,6 @@ function toggleFaq(el){
   document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
   if(!wasOpen)item.classList.add('open');
 }
-function submitForm(){
-  const n=document.getElementById('fi').value;
-  const e=document.getElementById('fe').value;
-  const m=document.getElementById('fm').value;
-  if(!n||!e||!m){alert('Wypełnij wymagane pola');return;}
-  const s=document.getElementById('formSuccess');
-  s.style.display='block';
-  document.getElementById('fi').value='';
-  document.getElementById('fe').value='';
-  document.getElementById('fs').value='';
-  document.getElementById('fm').value='';
-}
-const obs=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
-},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
 </script>
